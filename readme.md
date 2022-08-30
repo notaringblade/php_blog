@@ -1,4 +1,4 @@
-on local server:
+on localhost:
     if using xampp:
         in logic.php
         $host = "localhost";
