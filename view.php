@@ -15,27 +15,40 @@
 
     <title>Blog using PHP & MySQL</title>
 </head>
-<body>
+<body class = "bg-dark">
 
-   <div class="container mt-5">
+   <div class="container mt-5 ">
 
-        <?php foreach($query as $q){?>
-            <div class="bg-dark p-5 rounded-lg text-white text-center">
-                <h1><?php echo $q['title'];?></h1>
+        <?php 
+            if(isset($_GET['id'])){
+                $id = $_GET['id'];
+                $sql = "SELECT * FROM my_blog_data WHERE id = ".$id; 
 
-                <div class="d-flex mt-2 justify-content-center align-items-center">
-                    <a href="edit.php?id=<?php echo $q['id']?>" class="btn btn-light btn-sm" name="edit">Edit</a>
-                    <form method="POST">
-                        <input type="text" hidden value='<?php echo $q['id']?>' name="id">
-                        <button class="btn btn-danger btn-sm ml-2" name="delete">Delete</button>
-                    </form>
-                </div>
+                $result = mysqli_query($con, $sql);
 
-            </div>
-            <p class="mt-5 border-left border-dark pl-3"><?php echo $q['content'];?></p>
-        <?php } ?>    
+                if (mysqli_num_rows($result) > 0){
+                    while($row = mysqli_fetch_assoc($result)){
+                        echo '<div class="card bg-dark text-white border border-light" style="border-radius: 20px; height: 800px" >
+                        <div class="card-body">
+                            <h5 class="card-title text-center border border-light">'.$row["title"].'</h5>
+                            <p class="card-text text-light border border-light">'.$row["content"].'</p>
+                        </div>
+                        </div>';
+                    }
 
-        <a href="index.php" class="btn btn-outline-dark my-3">Go Home</a>
+                }else{
+                    echo '<div> Error </div>';
+                }
+                
+
+            }else{
+                header("Location: index.php");
+            }
+        ?>  
+
+        <a href="index.php" class="btn btn-outline-light my-3">Go Home</a>
+
+        
    </div>
 
     <!-- Bootstrap JS -->

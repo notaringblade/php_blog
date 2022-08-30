@@ -60,17 +60,19 @@
 
     <title>Blog using PHP & MySQL</title>
 </head>
-<body style = "background-color: #2F3742">
+<body class = 'bg-dark'>
 
    <div class="container mt-5 ">
         <form method="post" target="">
 
-            <input type="text" placeholder="Blog Title" class="form-control my-3 bg-dark text-white text-center" name="title" value="<?php if(isset($title)) echo $title; ?>">
+            <input type="text" placeholder="Blog Title" class="form-control my-3   text-black text-center" style = 'width: 1200px' name="title" value='<?php if(isset($title)) echo $title; ?>'>
             
-            <textarea id="content" name="content" class="form-control dark" cols="30" rows="10" value="<?php if(isset($content)) echo $content; ?>"></textarea>
+            <textarea id="content" name="content" class="form-control dark"value="<?php if(isset($content)) echo $content; ?>"></textarea>
 
 
-            <button class="btn btn-dark" name="submit">Add Post</button>
+            <button class="btn btn-dark border border-light" style = ' margin-top: 10px ' name="submit">Add Post</button>
+            <a href="index.php" class="btn btn-dark border-light">Go Home</a>
+
         </form>
    </div>
 
@@ -93,6 +95,7 @@
             placeholder: "Tell your story...",
             min_height: 600,
             max_height: 800,
+            width: 1200,
             content_style:
             "@import url('https://fonts.googleapis.com/css2?family=Tinos&display=swap'); body { font-family: 'Tinos', serif; font-size: 16pt; color: 'white'; }",
             quickbars_selection_toolbar: "bold italic link  | h1 h2 | blockquote",

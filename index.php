@@ -2,6 +2,8 @@
 
     include "logic.php";
 
+    
+
 ?>
 
 <!DOCTYPE html>
@@ -15,17 +17,59 @@
 
     <title>Blog using PHP & MySQL</title>
 </head>
-<body style = "background-color: #2F3742">
+<body class = "bg-dark">
 
     <div class="container mt-5">
 
+        <?php 
+            if (isset($_GET['delete_id'])){
+                    $delete_id = $_GET['delete_id'];
+                    $sql = "DELETE FROM my_blog_data WHERE id=" .$delete_id ;
+        
+                    if(mysqli_query($con, $sql)){
+                        header("Location: index.php");
+        
+                    }else {
+                        echo "post not deleted".mysqli_error($con);
+                    }
+            }
+        ?>
         
 
         <!-- Create a new Post button -->
         <div class="text-center">
             <a href="create.php" class="btn btn-outline-light">+ Create a new post</a>
         </div>
+        
+        <!-- posts -->
+        <div>
+            <?php
+                $sql = "SELECT * from my_blog_data LIMIT 21";
 
+                $result = mysqli_query($con, $sql);
+
+                if(mysqli_num_rows($result)> 0){
+                    echo    ' <div class="container mt-5 text-center">';
+                    echo '<div class="row row-cols-4">';
+                    while( $row = mysqli_fetch_assoc($result)){
+                        echo '
+                        
+                            <div class="col">
+                              <div class="card-body border border-light enable-rounded" style="margin-bottom: 10px; border-radius: 20px">
+                                <h5 class="card-title text-light">'.$row["title"].'</h5>
+                                <a href="view.php?id='.$row["id"].'" class="btn btn-dark border border-light">View More</a>
+                                <a name = "delete_id" href="index.php?delete_id='.$row["id"].'" class="btn btn-danger border border-light">Delete</a>
+                            </div>
+                        </div>
+                              ';
+                    }
+                    echo '</div>';
+                    echo '</div>';
+                }else{
+                    echo "<container class = ' container mt5 text-center '><h1 class = ' text-light '>No Blogs Stored</h1></container >";
+                }
+            ?>
+        </div>
         
        
     </div>
