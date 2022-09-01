@@ -28,11 +28,11 @@
 
                 if (mysqli_num_rows($result) > 0){
                     while($row = mysqli_fetch_assoc($result)){
-                        echo '<div class="card bg-dark text-white border border-light" style="border-radius: 20px; height: 800px" >
+                        echo '<div class="card bg-dark text-white border border-light overflow-auto" style=" max-height: 800px; border-radius: 20px; >
                         <div class="card-body">
-                            <h5 class="card-title text-center border border-light">'.$row["title"].'</h5>
-                            <p class="card-text text-light border border-light">'.$row["content"].'</p>
-                        </div>
+                            <h5 class="card-title text-center fixed: top " style= "max-height 75; margin-top: 10px">'.$row["title"].'</h5>
+                            <p> '.$row["content"].' </p>
+                            </div>
                         </div>';
                     }
 

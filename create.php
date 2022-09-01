@@ -66,12 +66,12 @@
         <form method="post" target="">
 
             <input type="text" placeholder="Blog Title" class="form-control my-3   text-black text-center" style = 'width: 1200px' name="title" value='<?php if(isset($title)) echo $title; ?>'>
-            
+            <?php $contentError ?>
             <textarea id="content" name="content" class="form-control dark"value="<?php if(isset($content)) echo $content; ?>"></textarea>
 
 
             <button class="btn btn-dark border border-light" style = ' margin-top: 10px ' name="submit">Add Post</button>
-            <a href="index.php" class="btn btn-dark border-light">Go Home</a>
+            <a href="index.php" class="btn btn-dark border-light" style = ' margin-top: 10px '>Go Home</a>
 
         </form>
    </div>
@@ -91,7 +91,7 @@
             toolbar: false,
             statusbar: false,
             icons: "thin",
-            
+            images_upload_url: 'upload.php',
             placeholder: "Tell your story...",
             min_height: 600,
             max_height: 800,
@@ -99,11 +99,11 @@
             content_style:
             "@import url('https://fonts.googleapis.com/css2?family=Tinos&display=swap'); body { font-family: 'Tinos', serif; font-size: 16pt; color: 'white'; }",
             quickbars_selection_toolbar: "bold italic link  | h1 h2 | blockquote",
-            quickbars_insert_toolbar: "image media code bold",
+            quickbars_insert_toolbar: "image media hr",
             plugins: [
                 'a11ychecker','advlist','advcode','advtable','autolink','checklist','export',
                 'lists','link','image','charmap','preview','anchor','searchreplace','visualblocks',
-                'powerpaste','fullscreen','formatpainter','insertdatetime','media','table','help','wordcount', 'code', "autoresize quickbars image media table hr",
+                'powerpaste','fullscreen','formatpainter','insertdatetime','media','table','help','wordcount', "autoresize quickbars image media table hr",
             ],
             // toolbar: 'undo redo | formatpainter casechange styleselect | bold italic backcolor |'
         });
